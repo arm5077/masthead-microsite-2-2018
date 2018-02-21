@@ -1,0 +1,44 @@
+<template id="masthead-label">
+  <style type="text/css">
+    :host {
+      text-align: center;
+      display: block;
+    }
+    
+    .label {
+      border: 2px solid;
+      padding: 10px 29px;
+      font-family: Graphik, sans-serif;
+      letter-spacing: 1px;
+      font-weight: bold;
+      text-align: center;
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 16px;
+      margin: auto;
+    }
+    
+  </style>
+  <div class="label">
+    <slot></slot>
+  </div>
+</template>
+
+<script>
+  let mastheadLabelTemplate = document.currentScript.ownerDocument.querySelector(`#masthead-label`);
+  ShadyCSS.prepareTemplate(mastheadLabelTemplate, "masthead-label");
+
+  customElements.define('masthead-label', class extends HTMLElement {
+    constructor() {
+      super();
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.appendChild(mastheadLabelTemplate.content.cloneNode(true));
+    }
+    
+    connectedCallback() {
+      this.style.color = this.getAttribute('color') || '#222222';
+      this.style.borderColor = this.getAttribute('color') || '#222222';
+    }
+  });
+</script>
+  

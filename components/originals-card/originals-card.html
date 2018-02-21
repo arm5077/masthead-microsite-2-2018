@@ -1,0 +1,104 @@
+<template id="originals-card-template">  
+  <style>    
+    :host {
+      display: flex;
+      height: 100vh;
+      width: 100%;
+      max-height: 600px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      position: relative;
+      //background-blend-mode: multiply;
+      padding: 0px 10px;
+      box-sizing: border-box;
+    }
+    
+    .originals-card ::slotted(a){
+      text-decoration: none;
+    }
+    
+    .originals-card ::slotted(a:hover){
+      text-decoration: underline;
+    }
+    
+    #img {
+      background-position: center;
+      background-size: cover;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 1;
+      opacity: .4;
+    }
+    
+    #overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      mix-blend-mode: multiply;
+      z-index: 2;
+      top: 0;
+      left: 0;
+    }
+    
+    h1.originals-card {
+      z-index: 3;
+      color: white;
+      font-family: Noe Display, sans-serif;
+      line-height: 42px;
+      font-size: 40px;
+      max-width: 215px;
+      text-align: center;
+      
+    }
+    
+    masthead-label.originals-card {
+      z-index: 3;
+      position: absolute;
+      top: 30px;
+      display: none;
+    }
+    
+    @media (min-width: 825px) {
+      masthead-label.originals-card {
+        display: none !important;
+      }
+    }
+    
+  </style>
+  <div id="img"></div>
+  <div id="overlay"></div>
+  <masthead-label class="originals-card" color="white">Masthead Originals</masthead-label>
+  <h1 class="originals-card">
+    <slot name="hed"></slot>
+  </h1>
+  
+</template>
+
+<script>
+  let originalsCardTemplate = document.currentScript.ownerDocument.querySelector(`#originals-card-template`);
+  // No ShadyCSS thing here because Firefox can't handle nested shadow doms
+
+  customElements.define('originals-card', class extends HTMLElement {
+    constructor() {
+      super();
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.appendChild(originalsCardTemplate.content.cloneNode(true));
+    }
+  
+    connectedCallback() {
+      //this.style.background = `${this.getAttribute('color')} url('${this.getAttribute('img')}) no-repeat center top`;
+      //this.style.backgroundSize = "cover";
+      this.shadowRoot.getElementById("img").style.backgroundImage = `url('${this.getAttribute('img')}')`;
+      this.shadowRoot.getElementById("overlay").style.backgroundColor = `${this.getAttribute('color')}`;
+      if (this.getAttribute('label')) {
+        this.shadowRoot.querySelector("masthead-label").style.display = "block";
+      }
+    }
+  });
+</script>
+  

@@ -1,0 +1,65 @@
+<template id="subnav-template">
+  <style type="text/css">
+    :host {
+      display: flex;
+      height: 36px;
+      font-family: Graphik, sans-serif;
+      background-color: #ddd;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      color: #666666;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    li {
+      display: inline-block;
+      margin-right: 30px;
+      font-family: Graphik, serif;
+      color: #666;
+      font-weight: 300;
+      font-size: 12px;
+    }
+    
+    li:last-child {
+      margin: 0;
+    }
+    
+    li a {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    li a:hover {
+      text-decoration: underline;
+    }
+    
+  </style>
+  <ul>
+    <li><a target="blank" href="https://www.theatlantic.com/membership/">Member Center</a></li>
+    <li><a target="blank" href="https://www.theatlantic.com/membership/archive/2018/01/how-to-listen-to-the-masthead-conversations-from-your-podcast-app/552833/">Download podcasts</a></li>
+    <li><a target="blank" href="mailto:themasthead@theatlantic.com">Contact us</a></li>
+  </ul>
+
+</template>
+
+<script>
+  let subnavTemplate = document.currentScript.ownerDocument.querySelector(`#subnav-template`);
+  ShadyCSS.prepareTemplate(subnavTemplate, 'masthead-subnav')
+  customElements.define('masthead-subnav', class extends HTMLElement {
+    connectedCallback() {
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      ShadyCSS.styleElement(this);
+      shadowRoot.appendChild(subnavTemplate.content.cloneNode(true));
+    }
+  });
+</script>

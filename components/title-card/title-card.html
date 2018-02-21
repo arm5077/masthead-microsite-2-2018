@@ -1,0 +1,132 @@
+<template id="title-card-template">
+  
+  <style>    
+    :host {
+      display: flex;
+      width: 100%;
+      margin: auto;
+      background-color: rgba(56, 54, 16, .28);
+      height: 100vh;
+      align-items: center;
+      flex-direction: row;
+      position: relative;
+    }
+    
+    .pane {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    
+    .pane.intro {
+      box-sizing: border-box;
+      padding-left: 3%;
+      z-index: 10;
+    }
+    
+    h1.title-card {
+      font-family: Druk, sans-serif;
+      color: white;
+      background-color: #322D0B;
+      font-size: 70px;
+      text-transform: uppercase;
+      line-height: 70px;
+      display: inline;
+      padding: 0px 15px 0px;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      letter-spacing: 2px;
+      z-index: 10;
+    }
+    
+    h2.title-card {
+      padding: 0;
+      margin: 15px 0px;
+      font-family: Graphik, sans-serif;
+      font-weight: 700;
+      color: #222222;
+      font-size: 24px;
+      max-width: 280px;
+    }
+    
+    .pane.image {
+      display: none;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    img {
+      width: 100%;
+    }
+    
+    img.logo {
+      width: 115px;
+      margin-bottom: 20px;
+    }
+    
+    .credit {
+      font-size: 10px;
+      font-family: Graphik, sans-serif;
+      color: rgba(255,255,255,.25);
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      z-index: 2;
+      text-transform: uppercase;
+    }
+    
+    @media (min-width: 840px) {
+      .pane.image {
+        display: block;
+        background-color: #322D0B;
+      }
+      
+      .pane {
+        width: 50%;
+      }
+      
+      h1.title-card {
+        font-size: 96px;
+        line-height: 100px;
+      }
+      
+      h2.title-card {
+        max-width: 400px;
+        font-size: 24px;
+      }
+      
+      img.logo {
+        width: 140px;
+      }
+      
+    }
+    
+  </style>
+  <div class="pane intro">
+    <img class="logo" src="./assets/masthead-logo-dark.svg" />
+    <div>
+      <h1 class="title-card"><slot name="title"></slot></h1>
+    </div>
+    <h2 class="title-card"><slot name="dek">Lobbying, power, and the evolution of Washington, D.C.</slot></h2>
+  </div>
+  <div class="pane image" style='background-image: url("./assets/LincolnInDecay.jpg");'>
+    <div class="credit">The Voorhes</div>
+  </div>
+</template>
+
+<script>
+  let template = document.currentScript.ownerDocument.querySelector('#title-card-template');
+  ShadyCSS.prepareTemplate(template, 'title-card')
+  customElements.define('title-card', class extends HTMLElement {
+    constructor() {
+      super();
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+  });
+</script>
+  

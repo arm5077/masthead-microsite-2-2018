@@ -1,0 +1,41 @@
+<template id="masthead-quote-template">
+  <style type="text/css">
+    :host {
+      background-color: rgba(240, 32, 29, .1);
+      padding: 40px 6%;
+      font-family: Noe Display, serif;
+      font-weight: bold;
+      font-size: 24px;
+      margin: 30px 0px;
+      text-align: center;
+      display: block;
+      box-sizing: border-box;
+    }
+    
+    @media (min-width: 721px) {
+
+    :host {
+        float: right;
+        width: 100%;
+        font-size: 32px;
+        line-height: 36px;
+      }
+    }
+    
+    
+  </style>
+  <slot>Well let's see if this works!</slot>
+
+</template>
+
+<script>
+  let mastheadQuoteTemplate = document.currentScript.ownerDocument.querySelector(`#masthead-quote-template`);
+  ShadyCSS.prepareTemplate(mastheadQuoteTemplate, 'masthead-quote')
+  customElements.define('masthead-quote', class extends HTMLElement {
+    connectedCallback() {
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      ShadyCSS.styleElement(this);
+      shadowRoot.appendChild(mastheadQuoteTemplate.content.cloneNode(true));
+    }
+  });
+</script>

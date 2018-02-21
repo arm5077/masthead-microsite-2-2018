@@ -1,0 +1,69 @@
+@font-face{
+    font-display:swap;
+    font-family:Druk;
+    font-style:normal;
+    font-weight:800;
+    src:url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/druk/Druk-Heavy-Web.73c680315608.woff2"),url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/druk/Druk-Heavy-Web.de0a29cd8676.woff")format("woff")
+}
+@font-face{
+    font-display:swap;
+    font-family:"Graphik";
+    font-style:normal;
+    font-weight:400;
+    src:url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/graphik/Graphik-Regular-Web.f00835c4ea93.woff2")format("woff2"),url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/graphik/Graphik-Regular-Web.475a966967ba.woff")format("woff")
+}
+ @font-face{
+    font-display:swap;
+    font-family:"Graphik";
+    font-style:normal;
+    font-weight:600;
+    src:url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/graphik/Graphik-Semibold-Web.4ddb0b7ae595.woff2")format("woff2"),url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/graphik/Graphik-Semibold-Web.86883f41da8f.woff")format("woff")
+}
+@font-face{
+    font-display:swap;
+    font-family:"Lyon Text";
+    font-stretch:normal;
+    font-style:normal;
+    font-weight:400;
+    src:url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/lyon/Lyon-Text-Regular.952052f78892.woff2")format("woff2"),url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/lyon/Lyon-Text-Regular.840c78933255.woff")format("woff")
+}
+ @font-face{
+    font-display:swap;
+    font-family:"Lyon Text";
+    font-stretch:normal;
+    font-style:italic;
+    font-weight:400;
+    src:url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/lyon/Lyon-Text-Regular-Italic.1f3d1b40255e.woff2")format("woff2"),url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/lyon/Lyon-Text-Regular-Italic.ce9636f76967.woff")format("woff")
+}
+ @font-face{
+    font-display:swap;
+    font-family:"Lyon Text";
+    font-stretch:normal;
+    font-style:normal;
+    font-weight:700;
+    src:url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/lyon/Lyon-Text-Bold.8f7a8108a163.woff2")format("woff2"),url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/lyon/Lyon-Text-Bold.49ef3785215a.woff")format("woff")
+}
+ @font-face{
+    font-display:swap;
+    font-family:"Lyon Text";
+    font-stretch:normal;
+    font-style:italic;
+    font-weight:700;
+    src:url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/lyon/Lyon-Text-Bold-Italic.22e4aa94ac93.woff2")format("woff2"),url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/lyon/Lyon-Text-Bold-Italic.65ae5cd7ad2d.woff")format("woff")
+}
+@font-face{
+    font-display:swap;
+    font-family:"Noe Text";
+    font-stretch:normal;
+    font-style:normal;
+    font-weight:900;
+    src:url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/noe/Noe-Text-Black.ed1ede2fa604.woff2")format("woff2"),url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/noe/Noe-Text-Black.d9cbdf5ae0dd.woff")format("woff")
+}
+ @font-face{
+    font-display:swap;
+    font-family:"Noe Text";
+    font-stretch:normal;
+    font-style:italic;
+    font-weight:900;
+    src:url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/noe/Noe-Text-Black-Italic.7028d3cace45.woff2")format("woff2"),url("https://cdn.theatlantic.com/assets/static/b/frontend/dist/theatlantic/fonts/noe/Noe-Text-Black-Italic.56b513b728ae.woff")format("woff")
+}

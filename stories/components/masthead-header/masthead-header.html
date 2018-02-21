@@ -1,0 +1,70 @@
+<template id="header-template">
+  <style type="text/css">
+    :host {
+      display: flex;
+      height: 125px;
+      background-color: #222;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      box-sizing: border-box;
+      padding: 0 3% 10px;
+    }
+    
+    .header-title {
+      font-family: Druk, sans-serif;
+      text-transform: uppercase;
+      color: white;
+      font-size: 40px;
+      letter-spacing: 2px;
+      display: block;
+      text-decoration: none;
+      order: 1;
+    }
+    
+    .logo img {
+      height: 25px;
+      margin-bottom: 10px;
+    }
+    
+    @media (min-width: 720px) {
+      :host {
+        height: 100px;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+      
+      .header-title {
+        font-size: 56px;
+      }
+      
+      .logo {
+        order: 2;
+      }
+      
+      .logo img {
+        height: 35px;
+      }
+      
+    }
+    
+    
+    
+  </style>
+  <a class="logo"  href="https://www.theatlantic.com/membership"><img src="../../assets/masthead-logo.svg" /></a>
+  <a class="header-title" href="../../index.html">The Corruption Issue</a>
+
+</template>
+
+<script>
+  let headerTemplate = document.currentScript.ownerDocument.querySelector(`#header-template`);
+  ShadyCSS.prepareTemplate(headerTemplate, 'masthead-header')
+  customElements.define('masthead-header', class extends HTMLElement {
+    connectedCallback() {
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      ShadyCSS.styleElement(this);
+      shadowRoot.appendChild(headerTemplate.content.cloneNode(true));
+    }
+  });
+</script>

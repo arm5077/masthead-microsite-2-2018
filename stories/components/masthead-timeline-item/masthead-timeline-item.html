@@ -1,0 +1,74 @@
+<template id="masthead-timeline-item">
+  <style type="text/css">
+    :host {
+      font-size: 16px;
+      display: block;
+      border-left: 3px solid #F0204F;
+      max-width: 600px;
+      margin: 0 0 0 3%;
+      padding: 0px 4% 25px;
+      width: 85%;
+      position: relative;
+    }
+    
+    .timeline-title {
+      font-family: Graphik, sans-serif;
+      font-weight: bold;
+      text-transform: uppercase;
+      position: relative;
+      margin-bottom: 10px;
+    }
+    
+    :host:before {
+      content: " ";
+      display: block;
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background-color: #F0204F;
+      top: 4px;
+      left: -7px;
+    }
+    
+    .timeline-text {
+      font-family: Lyon Text;
+      font-size: 18px;
+      line-height: 24px;
+    }
+    
+    @media (min-width: 720px) {
+      .timeline-text {
+        font-size: 20px;
+        line-height: 28px;
+      }
+      
+      :host {
+        margin: auto;
+        left: 4%;
+      }
+      
+    }
+  </style>
+  
+  <div class="timeline-title">
+    <slot name="timeline-title"></slot>
+  </div>
+  <div class="timeline-text">
+    <slot name="timeline-text"></slot>
+  </div>
+
+</template>
+
+<script>
+  let mastheadTimelineItem = document.currentScript.ownerDocument.querySelector(`#masthead-timeline-item`);
+  ShadyCSS.prepareTemplate(mastheadTimelineItem, 'masthead-timeline-item')
+  customElements.define('masthead-timeline-item', class extends HTMLElement {
+    constructor(){
+      super();
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      ShadyCSS.styleElement(this);
+      shadowRoot.appendChild(mastheadTimelineItem.content.cloneNode(true));
+    }
+  });
+</script>

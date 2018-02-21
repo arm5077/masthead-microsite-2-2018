@@ -1,0 +1,35 @@
+<template id="masthead-subhed-template">
+  <style type="text/css">
+    :host {
+      font-family: Graphik, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      margin: 30px 0 10px;
+      padding: 0px 3%;
+      display: block;
+      position: relative;
+    }
+    
+    @media (min-width: 721px) {
+
+    :host {
+      max-width: 650px;
+      margin: 30px auto 10px;
+      }
+    }
+  </style>
+  <slot>Well let's see if this works!</slot>
+
+</template>
+
+<script>
+  let mastheadSubhedTemplate = document.currentScript.ownerDocument.querySelector(`#masthead-subhed-template`);
+  ShadyCSS.prepareTemplate(mastheadSubhedTemplate, 'masthead-subhed')
+  customElements.define('masthead-subhed', class extends HTMLElement {
+    connectedCallback() {
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      ShadyCSS.styleElement(this);
+      shadowRoot.appendChild(mastheadSubhedTemplate.content.cloneNode(true));
+    }
+  });
+</script>

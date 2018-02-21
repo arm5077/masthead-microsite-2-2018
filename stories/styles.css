@@ -1,0 +1,157 @@
+@keyframes pulse {
+  0%   {  color: rgba(51, 51, 51, 1); }
+  50% {  color: rgba(51, 51, 51, .3); }
+  100%   {  color: rgba(51, 51, 51, 1); }
+}
+
+a {
+  color: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.loader {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  color: #ccc;
+  font-size: 40px;
+  font-weight: 200;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 1;
+  transition: .25s all;
+  background-color: white;
+  z-index: 1;
+  animation: pulse 2s infinite;
+}
+
+.loader.hidden {
+  opacity: 0;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+}
+
+.content p {
+  font-family: Lyon Text, serif;
+  font-size: 18px;
+  line-height: 24px;
+  padding: 0px 3%;
+  float: none;
+}
+
+.content masthead-timeline-item p {
+  padding: 0px;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 8px 0px;
+}
+
+.content masthead-timeline-item p:first-child {
+  margin-top: 0px;
+}
+
+.content.drop p:first-child:before {
+  content: attr(data-letter);
+}
+
+masthead-timeline-item:first-of-type {
+  margin-top: 30px;
+}
+
+masthead-timeline-item:last-of-type {
+  padding-bottom: 0px;
+  margin-bottom: 50px;
+}
+
+.content ul {
+  max-width: 630px;
+  font-family: Lyon Text, serif;
+  font-size: 18px;
+  line-height: 24px;
+  padding: 0px 3%;
+  float: none;
+  margin: auto;
+  width: 80%;
+}
+
+.content li {
+  margin-bottom: 20px;
+}
+
+blockquote {
+  width: 94%;
+  box-sizing: border-box;
+  padding: 10px 3%;
+
+  max-width: 650px;
+  margin: auto;
+  border-left: 2px solid #222;
+}
+
+.content blockquote p {
+  padding: 0;
+  color: #222;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.content blockquote p:first-child {
+  margin-top: 0;
+}
+
+.content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 720px) { 
+  .content p {
+    max-width: 650px;
+    margin: 18px auto;
+    font-size: 20px;
+    line-height: 28px;
+    position: relative;
+  } 
+  
+  .content ul {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  
+}
+
+
+@media (min-width: 850px) { 
+  .content.drop p:first-child:before {
+    content: none;
+  }
+
+  .content.drop p:first-child:after {
+    content: attr(data-letter);
+    font-family: Druk, sans-serif;
+    position: absolute;
+    top: 68px;
+    left: -60px;
+    font-size: 200px;
+    color: #222222;
+    text-align: right;
+  }
+
+  .content.drop p, .content.drop masthead-subhed {
+    left: 20px;
+  }
+  
+  .content.drop masthead-timeline-item p {
+    left: 0;
+  }
+}

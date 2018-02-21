@@ -1,0 +1,110 @@
+<template id="suggested-reading">
+  <style type="text/css">
+    :host {
+      width: 100%;
+      box-sizing: border-box;
+      background-color: #232323;
+      padding: 48px 0%;
+      display: block;
+    }    
+    
+    ul {
+      padding: 0;
+      text-align: center;
+    }
+    
+    li {
+      list-style: none;
+      margin: 0;
+      color: white;
+      padding: 0px 6%;
+      font-family: Noe Display, sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 25px;
+    }
+    
+    a { 
+      color: inherit;
+      text-decoration: none
+    }
+    
+    label.name {
+      font-family: Graphik, sans-serif;
+      font-size: 14px;
+      text-transform: uppercase;
+      display: block;
+      text-align: center;
+      margin-bottom: 5px;
+      font-weight: 400;
+    }
+
+    a:hover { 
+      text-decoration: underline
+    }
+
+
+    
+    masthead-label {
+      margin-bottom: 35px;
+    }
+    
+    @media (min-width: 720px) {
+      :host {
+        width: 50vw;
+      }
+    }
+  </style>
+  
+  <masthead-label color="white">Further reading</masthead-label>
+  <ul>
+   <li>
+     <a href="https://www.theatlantic.com/politics/archive/2012/07/i-know-the-congressional-culture-of-corruption/260081/">
+       <label class="name">Jack Abramoff</label>
+       I Know the Congressional Culture of Corruption
+     </a>
+   </li>
+   <li>
+     <a href="https://www.theatlantic.com/magazine/archive/2016/10/theres-nothing-better-than-a-scared-rich-candidate/497522/">
+       <label class="name">Molly Ball</label>
+       There&rsquo;s Nothing Better Than a Scared, Rich Candidate
+     </a>
+   </li>
+   <li>
+     <a href="https://www.theatlantic.com/international/archive/2017/07/putin-trump-clinton-establishment-russia/532821/">
+       <label class="name">Alexander Baunov</label>
+       How Putin Made Political Corruption Great Again
+     </a>
+   </li>
+   <li>
+     <a href="https://www.theatlantic.com/politics/archive/2017/11/a-golden-age-for-corruption/546143/">
+       <label class="name">David Graham</label>
+       Political Corruption Enters a New Golden Age
+     </a>
+   </li>
+   <li>
+     <a href="https://www.theatlantic.com/magazine/archive/2011/11/hacked/308673/">
+       <label class="name">James Fallows</label>
+       Hacked!
+     </a>
+   </li>
+   <li>
+     <a href="https://www.theatlantic.com/magazine/archive/2014/03/the-case-for-corruption/357568/">
+       <label class="name">Jonathan Rauch</label>
+       The Case for Corruption
+     </a>
+   </li>
+  </ul>
+</template>
+
+<script>
+  let suggestedReadingTemplate = document.currentScript.ownerDocument.querySelector(`#suggested-reading`);
+  ShadyCSS.prepareTemplate(suggestedReadingTemplate, 'suggested-reading')
+  customElements.define('suggested-reading', class extends HTMLElement {
+    constructor() {
+      super();
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.appendChild(suggestedReadingTemplate.content.cloneNode(true));
+    }
+  });
+</script>

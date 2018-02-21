@@ -1,0 +1,51 @@
+<template id="masthead-footer-template">
+  <style type="text/css">
+    :host {
+      box-sizing: border-box;
+      width: 100%;
+      background-color: #222;
+      padding: 40px 3%;
+      display: block;
+      text-align: right;
+      margin-top: 50px;
+    }
+    
+    ::slotted(a), div::slotted(a) {
+      display: inline-block;
+      padding: 17px 15px;
+      box-sizing: border-box;
+      border: 1px solid white;
+      font-family: Graphik, sans-serif;
+      font-weight: 200;
+      margin: 0 auto 8px;
+      font-size: 18px;
+      color: white !important;
+      text-decoration: none;
+    }
+    
+    div::slotted(a:hover) {
+      text-decoration: underline;
+    }
+    
+    @media (min-width: 721px) {
+
+    }
+  </style>
+  <div>
+    <slot></slot>
+  </div>
+
+</template>
+
+<script>
+  let mastheadFooterTemplate = document.currentScript.ownerDocument.querySelector(`#masthead-footer-template`);
+  ShadyCSS.prepareTemplate(mastheadFooterTemplate, 'masthead-footer')
+  customElements.define('masthead-footer', class extends HTMLElement {
+    constructor(){
+      super();
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      ShadyCSS.styleElement(this);
+      shadowRoot.appendChild(mastheadFooterTemplate.content.cloneNode(true));
+    }
+  });
+</script>

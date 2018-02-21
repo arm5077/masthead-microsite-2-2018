@@ -1,0 +1,186 @@
+
+<template id="lead-story">
+  <style type="text/css">
+    :host {
+      width: 100%;
+      box-sizing: border-box;
+      background-color: rgba(240, 32, 79, .10);
+      padding: 48px 0%;
+      display: block;
+    }
+    
+    .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+    
+    .pane {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+    }
+    
+    .pane.desktop {
+      display: none;
+    }
+    
+    .cover-label {
+      font-family: Graphik, sans-serif;
+      color: #F0204F;
+      opacity: .5;
+      padding: 0px 0px 0px 3%;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    
+   h1.lead-story {
+      font-family: Noe Display, serif;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 40px;
+      margin: 0 0 16px 0;
+      padding: 0 0 0 3%;
+    }
+    
+     h1.lead-story a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    h1.lead-story a:hover {
+      text-decoration: underline;
+    }
+
+    .mobile img {
+      width: 100%;
+    }
+    
+    .dek {
+      font-family: Lyon Text, serif;
+      font-size: 18px;
+      margin: 8px 0 24px;
+      padding: 0 3%;
+      line-height: 24px;
+    }
+    
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+    }
+    
+    .buttons a {
+      width: 94%;
+      display: block;
+      padding: 19px 10px;
+      box-sizing: border-box;
+      border: 1px solid #F0204F;
+      color: #F0204F;
+      font-family: Graphik, sans-serif;
+      font-weight: bold;
+      margin: 0 auto 8px;
+      font-size: 18px;
+      color: #F0204F !important;
+      text-decoration: none;
+    }
+    
+    .desktop {
+      display: none;
+    }
+    
+    @media (min-width: 720px) {
+      
+      :host {
+       padding: 70px 0px; 
+      }
+      
+      .desktop {
+        display: block;
+      }
+      
+      .pane.content {
+        width: 35%;
+        margin-right: 3%;
+      }
+      
+      .pane.desktop {
+        display: block;
+        width: 55%;
+        min-height: 400px;
+        background-size: cover;
+        background-position: center top;
+      }
+      
+      h1.lead-story {
+        font-size: 48px;
+        line-height: 48px;
+        margin: 0 0 8px 0;
+        padding: 0;
+      }
+      
+      .mobile img {
+        display: none;
+      }
+      
+      .buttons {
+        flex-direction: row;
+      }
+      
+      .buttons a{
+        padding: 27px 0 27px 3%;
+        margin-bottom: 0px;
+      }
+      
+      .buttons a:last-child{
+        margin-left: 12px;
+      }
+      
+      .cover-label, h1, .dek, .buttons {
+        padding-left: 0;
+      }
+      
+    }
+    
+  </style>
+  
+  <div class="row">
+    <div class="pane content">
+      <div class="cover-label">The Story that Started It All</div>
+      <h1 class="lead-story">
+        <a href="https://www.theatlantic.com/magazine/archive/2018/03/paul-manafort-american-hustler/550925/">Paul Manafort, American Hustler</a>
+      </h1>
+      <div class="mobile">
+        <img src="./assets/manafort-cover.jpg" />
+      </div>
+      <div class="dek">
+        <div >Decades before he ran the Trump campaign, Paul Manafort&rsquo;s pursuit of foreign cash and shady deals laid the groundwork for the corruption of Washington.</div>
+      </div>
+      <div class="buttons">
+        <a href="./stories/cast-of-characters/" class="button">The cast <br class="desktop" />of characters</a>
+        <a href="./stories/timeline" class="button">Manafort's <br class="desktop" />timeline</a>
+        
+      </div>
+    </div>
+    <div class="pane desktop" style='background-image: url("./assets/manafort-cover.jpg");'>
+    </div>
+  </div>
+</template>
+
+<script>
+  let leadStoryTemplate = document.currentScript.ownerDocument.querySelector(`#lead-story`);
+  ShadyCSS.prepareTemplate(leadStoryTemplate, 'lead-story')
+  customElements.define('lead-story', class extends HTMLElement {
+    constructor() {
+      super();
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.appendChild(leadStoryTemplate.content.cloneNode(true));
+    }
+  });
+</script>

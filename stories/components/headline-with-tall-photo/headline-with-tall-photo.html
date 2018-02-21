@@ -1,0 +1,219 @@
+<template id="headline-with-tall-photo">
+  <style type="text/css">
+    :host {
+
+    }
+      
+    .row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 25px;
+    }
+      
+    h1 {
+      margin: 0 3% 10px;
+      line-height: 32px;
+    }
+    
+    h2 {
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 30px;
+      font-family: Graphik, sans-serif;
+      display: none;
+      max-width: 380px;
+    }
+    
+    .pane.hed h1 ::slotted(*){
+      font-family: Noe Display, serif;
+      font-weight: bold;
+    }
+    
+    .byline {
+      font-family: Graphik, sans-serif;
+      text-transform: uppercase;
+      color: white;
+      font-weight: bold;
+      display: inline-block;
+      background-color: #F0204F;
+      padding: 5px 8px;
+      font-size: 12px;
+      margin-left: 3%;
+      margin-bottom: 24px;
+    }
+    
+    .picture ::slotted(img){
+      width: 100%;
+      margin-bottom: 1px;
+      position: relative;
+    }
+    
+    .credit {
+      font-family: Graphik, sans-serif;
+      font-size: 12px;
+      color: #999;
+      text-align: right;
+      margin-bottom: 20px;
+      margin-right: 3%;
+    }
+    
+    .content ::slotted(p) {
+      font-family: Lyon Text, serif;
+      font-size: 18px;
+      line-height: 24px;
+      padding: 0px 3%;
+      float: none;
+    }
+    
+    .pane.image {
+      display: none;
+    }
+    
+    .pane.image ::slotted(img) {
+      width: 100%;
+    }
+    
+    .content ::slotted(p.drop):before{
+      content: attr(data-letter);
+    }
+    
+    @media (min-width: 720px) {
+      
+      .content ::slotted(p.drop):before{
+        content: none
+      }
+      
+      .content ::slotted(p) {
+        max-width: 650px;
+        margin: 18px auto;
+        font-size: 20px;
+        line-height: 28px;
+        position: relative;
+        left: 20px;
+      }
+      
+      .content ::slotted(p.drop):after{
+        content: attr(data-letter);
+        font-family: Druk, sans-serif;
+        position: absolute;
+        top: 68px;
+        left: -60px;
+        font-size: 200px;
+        color: #222222;
+        text-align: right;
+      }
+      
+      .row {
+        margin-top: 0px;
+        margin-bottom: 50px;
+      }
+
+      h1 {
+        font-size: 48px;
+        line-height: 48px;
+        text-align: center;
+        max-width: 400px;
+        margin: 0px auto 15px;
+
+      }
+      
+      .picture ::slotted(img){
+        display: none;
+      }
+      
+      .pane {
+        width: 46vw;
+        text-align: center;
+      }
+      
+      .pane.image {
+        display: block;
+        width: 45vw;
+        margin-top:3vw;
+      }
+      
+      .pane.hed {
+        margin-top: 3vw;
+        padding-right: 3%;
+      }
+      
+      .pane.hed .credit {
+        display: none;
+      }
+      
+      h2 {
+        display: block;
+        margin: 0px auto 20px;
+        padding: 0px 3%;
+      }
+      
+      .content ::slotted(.quote) {
+          font-size: 32px;
+          line-height: 36px;
+        }
+      
+    }
+    
+    @media (max-width: 850px) and (min-width: 721px) {
+      .content ::slotted(p) {
+        margin: 18px 0px;
+        float: right;
+        left: 0px;
+      }
+      
+    .content ::slotted(.quote) {
+        float: right;
+        width: 100%;
+        font-size: 32px;
+        line-height: 36px;
+      }
+    }
+    
+
+  </style>
+  <div class="row">
+    <div class="pane hed">
+      <h1>
+        <slot name="hed"></slot>
+      </h1>
+      <h2>
+        <slot name="dek"></slot>
+      </h2>
+      
+      <div class="byline">
+        <slot name="byline"></slot>
+      </div>
+      <div class="picture">
+        <slot name="picture"></slot>
+      </div>
+      <div class="credit">
+        <slot name="credit"></slot>
+      </div>
+    </div>
+    <div class="pane image">
+      <slot name="big-picture"></slot>
+      <div class="credit">
+        <slot name="big-credit"></slot>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <slot name="content"></slot>
+  </div>
+    
+
+</template>
+
+<script>
+  let headlineWithTallPhotoTemplate = document.currentScript.ownerDocument.querySelector(`#headline-with-tall-photo`);
+  ShadyCSS.prepareTemplate(headlineWithTallPhotoTemplate, 'headline-with-tall-photo')
+  customElements.define('headline-with-tall-photo', class extends HTMLElement {
+    connectedCallback() {
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      ShadyCSS.styleElement(this);
+      shadowRoot.appendChild(headlineWithTallPhotoTemplate.content.cloneNode(true));
+    }
+  });
+</script>

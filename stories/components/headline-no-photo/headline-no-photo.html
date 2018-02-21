@@ -1,0 +1,153 @@
+<template id="headline-no-photo">
+  <style type="text/css">
+    :host {
+
+    }
+      
+    .row {
+      display: block;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 25px;
+    }
+      
+    h1 {
+      margin: 0 3% 10px;
+      line-height: 32px;
+    }
+    
+    h2 {
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 30px;
+      font-family: Graphik, sans-serif;
+      display: none;
+      max-width: 650px;
+      padding: 0 3%;
+    }
+    
+    .pane.hed h1 ::slotted(*){
+      font-family: Noe Display, serif;
+      font-weight: bold;
+    }
+    
+    .byline {
+      font-family: Graphik, sans-serif;
+      text-transform: uppercase;
+      color: white;
+      font-weight: bold;
+      display: inline-block;
+      background-color: #F0204F;
+      padding: 5px 8px;
+      font-size: 12px;
+      margin-left: 3%;
+    }
+    
+    
+    .content ::slotted(p) {
+      font-family: Lyon Text, serif;
+      font-size: 18px;
+      line-height: 24px;
+      padding: 0px 3%;
+      float: none;
+    }
+    
+    .content ::slotted(.quote) {
+      background-color: rgba(240, 32, 29, .1);
+      padding: 40px 6%;
+      font-family: Noe Display, serif;
+      font-weight: bold;
+      font-size: 24px;
+      margin: 30px 0px;
+      text-align: center;
+    }
+        
+    @media (min-width: 720px) {
+      
+      
+      .content ::slotted(p) {
+        max-width: 650px;
+        margin: 18px auto;
+        font-size: 20px;
+        line-height: 28px;
+        position: relative;
+      }
+      
+      .row {
+        display: flex;
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+
+      h1 {
+        font-size: 48px;
+        line-height: 48px;
+        text-align: center;
+        max-width: 650px;
+        margin: 0px auto 15px;
+        padding: 0 3%;
+      }
+      
+      .picture ::slotted(img){
+        display: none;
+      }
+      
+      .pane {
+        width: 100vw;
+        text-align: left;
+      }
+      
+      .pane.hed {
+        margin-top: 3vw;
+        text-align: center;
+      }
+      
+      .byline {
+        margin-left: 0;
+      }
+      
+      h2 {
+        display: block;
+        margin: 0px auto 20px;
+        padding: 0px 3%;
+      }
+      
+      .content ::slotted(.quote) {
+        font-size: 32px;
+        line-height: 36px;
+      }
+    }
+  </style>
+  <div class="row">
+    <div class="pane hed">
+      <h1>
+        <slot name="hed"></slot>
+      </h1>
+      <h2>
+        <slot name="dek"></slot>
+      </h2>
+      
+      <div class="byline">
+        <slot name="byline"></slot>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <slot name="content"></slot>
+  </div>
+    
+
+</template>
+
+<script>
+  let headlineNoPhotoTemplate = document.currentScript.ownerDocument.querySelector(`#headline-no-photo`);
+  ShadyCSS.prepareTemplate(headlineNoPhotoTemplate, 'headline-no-photo')
+  customElements.define('headline-no-photo', class extends HTMLElement {
+    connectedCallback() {
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      ShadyCSS.styleElement(this);
+      shadowRoot.appendChild(headlineNoPhotoTemplate.content.cloneNode(true));
+    }
+  });
+</script>

@@ -1,0 +1,43 @@
+<template id="talk-card">
+  <style type="text/css">
+    :host {
+      width: 100%;
+      box-sizing: border-box;
+      background-color: rgba(240, 32, 79, .15);
+      padding: 48px 5%;
+      display: block;
+    }    
+    
+    masthead-label {
+      margin-bottom: 35px;
+    }
+    
+    @media (min-width: 720px) {
+      :host {
+        width: 50vw;
+      }
+    }
+    
+    ::slotted(*) {
+      font-family: Graphik, sans-serif;
+      font-size: 18px;
+      line-height: 24px;
+    }
+    
+  </style>
+  
+  <masthead-label color="black">Let&rsquo;s talk about it</masthead-label>
+  <slot name="copy"></slot>
+</template>
+
+<script>
+  let talkCardTemplate = document.currentScript.ownerDocument.querySelector(`#talk-card`);
+  ShadyCSS.prepareTemplate(talkCardTemplate, 'talk-card');
+  customElements.define('talk-card', class extends HTMLElement {
+    constructor() {
+      super();
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.appendChild(talkCardTemplate.content.cloneNode(true));
+    }
+  });
+</script>

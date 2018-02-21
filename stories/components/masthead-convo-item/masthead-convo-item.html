@@ -1,0 +1,59 @@
+<template id="masthead-convo-item">
+  <style type="text/css">
+    :host {
+      font-family: Graphik, sans-serif;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 16px;
+      display: block;
+      margin: 30px 3% 10px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+    }
+    
+    :host:before {
+      content: " ";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      position: relative;
+      top: -1px;
+      margin-right: 10px;
+    }
+    
+    :host(.person1):before {
+      background-color: #3CC6CB;
+    }
+    
+    :host(.person2):before {
+      background-color: #F0204F;
+    }
+
+    :host(.person3):before {
+      background-color: #222222;
+    }
+    
+    @media (min-width: 721px) {
+    :host {
+      max-width: calc(650px - 3%);
+      margin: 30px auto 10px;
+      }
+    }
+  </style>
+  <slot></slot>
+
+</template>
+
+<script>
+  let mastheadConvoItemTemplate = document.currentScript.ownerDocument.querySelector(`#masthead-convo-item`);
+  ShadyCSS.prepareTemplate(mastheadConvoItemTemplate, 'masthead-convo-item')
+  customElements.define('masthead-convo-item', class extends HTMLElement {
+    constructor(){
+      super();
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      ShadyCSS.styleElement(this);
+      shadowRoot.appendChild(mastheadConvoItemTemplate.content.cloneNode(true));
+    }
+  });
+</script>

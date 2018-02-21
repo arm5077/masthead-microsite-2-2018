@@ -1,0 +1,75 @@
+<template id="originals-collection-template">  
+  <style>    
+    :host {
+      display: block;
+      width: 100%;
+    }
+  
+    ::slotted(*) {
+      width: 100%;
+    }
+  
+    masthead-label.originals-collection {
+      display: none;
+    }
+    
+    .row {
+      display: block;
+    }
+    
+    @media (min-width: 825px) {
+      
+      :host {
+        display: flex;
+        width: 94%;
+        height: 100vh;
+        min-height: 700px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 50px 3%;
+      }
+
+      masthead-label.originals-collection {
+        display: block;
+        margin-bottom: 40px;
+      }
+      
+      .row {
+        display: flex;
+      }
+      
+      originals-card, .card {
+        margin-right: 20px;
+        width: 275px;
+      }
+      
+      ::slotted(originals-card) {
+        margin-right: 20px;
+        width: 275px;
+      }
+      
+    }
+    
+  </style>
+  <div class="row">
+    <masthead-label class="originals-collection" color="black">Masthead Originals</masthead-label>
+  </div>
+  <div class="row">
+    <slot name="card" class="card"></slot>
+  </div>
+</template>
+
+<script>
+  let originalsCollectionTemplate = document.currentScript.ownerDocument.querySelector(`#originals-collection-template`);
+  // No ShadyCSS thing here because Firefox can't handle nested shadow doms
+  
+  customElements.define('originals-collection', class extends HTMLElement {
+    constructor() {
+      super();
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.appendChild(originalsCollectionTemplate.content.cloneNode(true));
+    }
+  });
+</script>
+  
